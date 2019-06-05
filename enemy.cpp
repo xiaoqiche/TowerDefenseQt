@@ -10,7 +10,7 @@
 #include <QMatrix>
 #include <QVector2D>
 #include <QtMath>
-
+// 这个类是敌方类（怪兽类）的实现
 static const int Health_Bar_Width = 20;
 
 const QSize Enemy::ms_fixedSize(52, 52);

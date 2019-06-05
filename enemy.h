@@ -10,7 +10,7 @@ class WayPoint;
 class QPainter;
 class MainWindow;
 class Tower;
-
+// 这个类是敌方类（怪兽类）的定义
 class Enemy : public QObject
 {
 	Q_OBJECT

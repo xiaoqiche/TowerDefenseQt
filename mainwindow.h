@@ -23,9 +23,9 @@ public:
 	explicit MainWindow(QWidget *parent = 0);
 	~MainWindow();
 
-	void getHpDamage(int damage = 1);
-	void removedEnemy(Enemy *enemy);
-	void removedBullet(Bullet *bullet);
+    void getHpDamage(int damage = 1);//鼠标点击触发事件
+    void removedEnemy(Enemy *enemy);//敌方被攻击，消失
+    void removedBullet(Bullet *bullet);//子弹击打后，消失(移除)
 	void addBullet(Bullet *bullet);
 	void awardGold(int gold);
 
@@ -34,9 +34,9 @@ public:
 
 protected:
 	void paintEvent(QPaintEvent *);
-	void mousePressEvent(QMouseEvent *);
+    void mousePressEvent(QMouseEvent *);//鼠标点击触发事件
 
-private slots:
+private slots://QT的private槽 当前类及其子类可以将信号与之相连接
 	void updateMap();
 	void gameStart();
 

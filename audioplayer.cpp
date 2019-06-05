@@ -36,10 +36,10 @@ void AudioPlayer::playSound(SoundType soundType)
 {
 	static const QUrl mediasUrls[] =
 	{
-		QUrl::fromLocalFile(s_curDir + "music/tower_place.wav"),
+        QUrl::fromLocalFile(s_curDir + "music/tower_place.wav"),//类型为wav，代入放置塔音乐地址
 		QUrl::fromLocalFile(s_curDir + "music/life_lose.wav"),
-		QUrl::fromLocalFile(s_curDir + "music/laser_shoot.wav"),
-		QUrl::fromLocalFile(s_curDir + "music/enemy_destroy.wav")
+        QUrl::fromLocalFile(s_curDir + "music/laser_shoot.wav"),//打中怪兽的音乐
+        QUrl::fromLocalFile(s_curDir + "music/enemy_destroy.wav")//怪兽消失的声音
 	};
 	static QMediaPlayer player;
 
