@@ -13,7 +13,7 @@
 #include <QXmlStreamReader>
 #include <QtDebug>
 
-static const int TowerCost = 300;
+static const int TowerCost = 300;//设定每安置一个炮塔花费300金币
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
