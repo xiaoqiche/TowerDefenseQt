@@ -13,7 +13,7 @@ class QTimer;
 
 class Tower : QObject
 {
-	Q_OBJECT
+    Q_OBJECT//所有应用QT槽的类都需要声明
 public:
 	Tower(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/tower.png"));
 	~Tower();

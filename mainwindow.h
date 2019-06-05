@@ -17,7 +17,7 @@ class AudioPlayer;
 
 class MainWindow : public QMainWindow
 {
-	Q_OBJECT
+    Q_OBJECT//所有应用QT槽的类都需要声明
 	
 public:
 	explicit MainWindow(QWidget *parent = 0);

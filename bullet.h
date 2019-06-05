@@ -12,7 +12,7 @@ class MainWindow;
 
 class Bullet : QObject
 {
-	Q_OBJECT
+    Q_OBJECT//所有应用QT槽的类都需要声明
 	Q_PROPERTY(QPoint m_currentPos READ currentPos WRITE setCurrentPos)
 
 public:
