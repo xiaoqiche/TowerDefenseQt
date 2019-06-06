@@ -11,11 +11,15 @@ class QPainter;
 class MainWindow;
 class Tower;
 // 这个类是敌方类（怪兽类）的定义
+
+
 class Enemy : public QObject
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
-	Enemy(WayPoint *startWayPoint, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/enemy.png"));
+    Enemy(WayPoint *startWayPoint, MainWindow *game,
+          const QPixmap &sprite = QPixmap(":/image/enemy.png"),
+          int maxHp = 40,qreal walkingSpeed = 1.0);//血量和速度应该是可以更改的部分
 	~Enemy();
 
 	void draw(QPainter *painter) const;
@@ -29,7 +33,7 @@ public:
 public slots:
 	void doActivate();
 
-private:
+protected://为继承做准备
 	bool			m_active;
 	int				m_maxHp;
 	int				m_currentHp;

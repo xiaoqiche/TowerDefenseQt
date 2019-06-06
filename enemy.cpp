@@ -15,12 +15,14 @@ static const int Health_Bar_Width = 20;
 
 const QSize Enemy::ms_fixedSize(52, 52);
 
-Enemy::Enemy(WayPoint *startWayPoint, MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/enemy.png")*/)
+Enemy::Enemy(WayPoint *startWayPoint, MainWindow *game,
+             const QPixmap &sprite/* = QPixmap(":/image/enemy.png")*/,
+             int maxHp, qreal walkingSpeed)
 	: QObject(0)
 	, m_active(false)
-	, m_maxHp(40)
-	, m_currentHp(40)
-	, m_walkingSpeed(1.0)
+    , m_maxHp(maxHp)
+    , m_currentHp(maxHp)
+    , m_walkingSpeed(walkingSpeed)
 	, m_rotationSprite(0.0)
 	, m_pos(startWayPoint->pos())
 	, m_destinationWayPoint(startWayPoint->nextWayPoint())
