@@ -30,7 +30,7 @@ public:
 	void awardGold(int gold);
 
 	AudioPlayer* audioPlayer() const;
-	QList<Enemy *> enemyList() const;
+    QList<Enemy *> enemyList() const;//游戏中涉及到的怪物以列表形式存储
 
 protected:
 	void paintEvent(QPaintEvent *);

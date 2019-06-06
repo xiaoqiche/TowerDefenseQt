@@ -84,6 +84,7 @@ void MainWindow::paintEvent(QPaintEvent *)
 	QPixmap cachePix(":/image/Bg.png");
 	QPainter cachePainter(&cachePix);
 
+    //这是一些批处理操作，把塔&塔基、怪、路线都按照列表逐个绘制
 	foreach (const TowerPosition &towerPos, m_towerPositionsList)
 		towerPos.draw(&cachePainter);
 
@@ -216,10 +217,10 @@ void MainWindow::removedEnemy(Enemy *enemy)
 	m_enemyList.removeOne(enemy);
 	delete enemy;
 
-	if (m_enemyList.empty())
+    if (m_enemyList.empty())//没怪了就加一波
 	{
 		++m_waves;
-		if (!loadWave())
+        if (!loadWave())//所有波用完就结束
 		{
 			m_gameWin = true;
 			// 游戏胜利转到游戏胜利场景
@@ -270,7 +271,7 @@ void MainWindow::preLoadWavesInfo()
 	file.close();
 }
 
-bool MainWindow::loadWave()
+bool MainWindow::loadWave()//这个是每波加载怪物的函数
 {
 	if (m_waves >= m_wavesInfo.size())
 		return false;
@@ -291,7 +292,7 @@ bool MainWindow::loadWave()
 	return true;
 }
 
-QList<Enemy *> MainWindow::enemyList() const
+QList<Enemy *> MainWindow::enemyList() const//调取怪物表
 {
 	return m_enemyList;
 }
