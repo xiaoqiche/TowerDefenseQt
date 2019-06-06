@@ -284,10 +284,18 @@ bool MainWindow::loadWave()//这个是每波加载怪物的函数
 		QMap<QString, QVariant> dict = curWavesInfo[i].toMap();
 		int spawnTime = dict.value("spawnTime").toInt();
 
-		Enemy *enemy = new Enemy(startWayPoint, this);
-		m_enemyList.push_back(enemy);
-		QTimer::singleShot(spawnTime, enemy, SLOT(doActivate()));
-	}
+        if(i%2 == 1){
+            Enemy *enemy = new Enemy(startWayPoint, this);
+            m_enemyList.push_back(enemy);
+            QTimer::singleShot(spawnTime, enemy, SLOT(doActivate()));
+        }
+        else{
+            Enemy *enemy2 = new Enemy2(startWayPoint, this);//另一类怪物也加点进去
+            m_enemyList.push_back(enemy2);
+            QTimer::singleShot(spawnTime, enemy2, SLOT(doActivate()));
+        }
+
+    }
 
 	return true;
 }
