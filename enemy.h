@@ -18,16 +18,16 @@ class Enemy : public QObject
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
     Enemy(WayPoint *startWayPoint, MainWindow *game,
-          const QPixmap &sprite = QPixmap(":/image/enemy_brightYellow.png"),
+          const QPixmap &sprite = QPixmap(":/image/enemy.png"),
           int maxHp = 40,qreal walkingSpeed = 1.0);//血量和速度应该是可以更改的部分
 	~Enemy();
-
-	void draw(QPainter *painter) const;
-	void move();
-	void getDamage(int damage);
-	void getRemoved();
-	void getAttacked(Tower *attacker);
-	void gotLostSight(Tower *attacker);
+    //设置为虚函数
+    virtual void draw(QPainter *painter) const;
+    virtual void move();
+    virtual void getDamage(int damage);
+    virtual void getRemoved();
+    virtual void getAttacked(Tower *attacker);
+    virtual void gotLostSight(Tower *attacker);
 	QPoint pos() const;
 
 public slots:
@@ -48,5 +48,22 @@ protected://为继承做准备
 	const QPixmap	m_sprite;
 	static const QSize ms_fixedSize;
 };
+
+//这个是一种特殊的怪，初次被攻击后加速,血量为20，是原来怪的一半
+class Enemy2 : public Enemy
+{
+    Q_OBJECT//所有应用QT槽的类都需要声明
+public:
+    Enemy2(WayPoint *startWayPoint, MainWindow *game,
+          const QPixmap &sprite = QPixmap(":/image/enemy_brightYellow.png"),
+          int maxHp = 20,qreal walkingSpeed = 1.0);//血量和速度应该是可以更改的部分
+    ~Enemy2();
+
+    void getDamage(int damage);//受伤后有加速效果
+
+protected:
+    bool m_speedUp;//判断是否是第一次被攻击
+};
+
 
 #endif // ENEMY_H

@@ -150,3 +150,26 @@ QPoint Enemy::pos() const
 {
 	return m_pos;
 }
+
+Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
+             const QPixmap &sprite,
+             int maxHp, qreal walkingSpeed)
+    :Enemy(startWayPoint,game,sprite,maxHp,walkingSpeed)
+{
+    m_speedUp = false;
+}
+
+Enemy2::~Enemy2()
+{
+    m_attackedTowersList.clear();
+    m_destinationWayPoint = NULL;
+    m_game = NULL;
+}
+
+void Enemy2::getDamage(int damage){
+    Enemy::getDamage(damage);
+    if(m_speedUp == false){
+        m_speedUp = true;
+        m_walkingSpeed = 3.0;
+    }
+}
