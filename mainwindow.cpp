@@ -14,6 +14,7 @@
 #include <QtDebug>
 
 static const int TowerCost = 300;//设定每安置一个炮塔花费300金币
+static const int UpdateTowerCost = 400;//设定升级炮塔花费400金币
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -121,11 +122,21 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 			it->setHasTower();
 
 			Tower *tower = new Tower(it->centerPos(), this);
+            tower->setTowerLevel(1);
 			m_towersList.push_back(tower);
 			update();
 			break;
 		}
+        if (canUpgradeTower() && it->containPoint(pressPos))
+        {
+            m_audioPlayer->playSound(TowerPlaceSound);
+            m_playrGold -= UpdateTowerCost;
 
+            Tower *tower = new Tower2(it->centerPos(), this);
+            m_towersList.push_back(tower);
+            update();
+            break;
+        }
 		++it;
 	}
 }
@@ -135,6 +146,13 @@ bool MainWindow::canBuyTower() const
 	if (m_playrGold >= TowerCost)
 		return true;
 	return false;
+}
+
+bool MainWindow::canUpgradeTower() const
+{
+    if(m_playrGold >= UpdateTowerCost)
+        return true;
+    return false;
 }
 
 void MainWindow::drawWave(QPainter *painter)

@@ -5,6 +5,7 @@ const QSize TowerPosition::ms_fixedSize(44, 44);
 
 TowerPosition::TowerPosition(QPoint pos, const QPixmap &sprite/* = QPixmap(":/image/open_spot.png")*/)
 	: m_hasTower(false)
+    , m_towerLevel(0)
 	, m_pos(pos)
 	, m_sprite(sprite)
 {
@@ -28,10 +29,21 @@ bool TowerPosition::hasTower() const
 	return m_hasTower;
 }
 
+int TowerPosition::towerLevel() const
+{
+    return m_towerLevel;
+}
+
 void TowerPosition::setHasTower(bool hasTower/* = true*/)
 {
 	m_hasTower = hasTower;
+    m_towerLevel=1;
 }
+
+void TowerPosition::upgrade()
+{
+    m_towerLevel=2;
+};
 
 void TowerPosition::draw(QPainter *painter) const
 {

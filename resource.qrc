@@ -20,5 +20,7 @@
         <file>image/froze2.png</file>
         <file>image/froze3.png</file>
         <file>image/green.png</file>
+        <file>image/tower2.png</file>
+        <file>image/towerUpgrade1.png</file>
     </qresource>
 </RCC>

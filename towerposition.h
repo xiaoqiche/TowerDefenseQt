@@ -12,8 +12,10 @@ class TowerPosition
 public:
 	TowerPosition(QPoint pos, const QPixmap &sprite = QPixmap(":/image/open_spot.png"));
 
-	void setHasTower(bool hasTower = true);
+    void setHasTower(bool hasTower = true);
+    void upgrade();
 	bool hasTower() const;
+    int towerLevel() const;
 	const QPoint centerPos() const;
 	bool containPoint(const QPoint &pos) const;
 
@@ -21,6 +23,7 @@ public:
 
 private:
 	bool		m_hasTower;
+    int         m_towerLevel;
 	QPoint		m_pos;
 	QPixmap		m_sprite;
 

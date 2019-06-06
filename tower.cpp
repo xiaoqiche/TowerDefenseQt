@@ -32,6 +32,32 @@ Tower::~Tower()
 	m_fireRateTimer = NULL;
 }
 
+Tower2::Tower2(QPoint pos, MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/tower.png"*/)
+    : Tower(pos,game,sprite)
+{
+    m_attackRange=100;
+    m_damage=20;
+    m_fireRate=500;
+    m_fireRateTimer = new QTimer(this);
+    connect(m_fireRateTimer, SIGNAL(timeout()), this, SLOT(shootWeapon()));
+}
+
+Tower2::~Tower2()
+{
+    delete m_fireRateTimer;
+    m_fireRateTimer = NULL;
+}
+
+void Tower::setTowerLevel(int level)
+{
+    m_towerLevel=level;
+}
+
+int Tower::getTowerLevel()
+{
+    return m_towerLevel;
+}
+
 void Tower::checkEnemyInRange()
 {
 	if (m_chooseEnemy)
