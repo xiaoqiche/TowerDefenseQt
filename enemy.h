@@ -18,7 +18,7 @@ class Enemy : public QObject
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
     Enemy(WayPoint *startWayPoint, MainWindow *game,
-          const QPixmap &sprite = QPixmap(":/image/enemy.png"),
+          const QPixmap &sprite = QPixmap(":/image/enemy_brightYellow.png"),
           int maxHp = 40,qreal walkingSpeed = 1.0);//血量和速度应该是可以更改的部分
 	~Enemy();
 

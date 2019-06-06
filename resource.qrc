@@ -11,5 +11,14 @@
         <file>config/Info.plist</file>
         <file>config/TowersPosition.plist</file>
         <file>config/Waves.plist</file>
+        <file>image/Bg1plus.png</file>
+        <file>image/Bg2.png</file>
+        <file>image/bullet1.png</file>
+        <file>image/bullet2.png</file>
+        <file>image/enemy_brightYellow.png</file>
+        <file>image/froze1.png</file>
+        <file>image/froze2.png</file>
+        <file>image/froze3.png</file>
+        <file>image/green.png</file>
     </qresource>
 </RCC>
