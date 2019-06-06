@@ -17,7 +17,7 @@ const QSize Enemy::ms_fixedSize(52, 52);
 
 Enemy::Enemy(WayPoint *startWayPoint, MainWindow *game,
              const QPixmap &sprite/* = QPixmap(":/image/enemy.png")*/,
-             int maxHp, qreal walkingSpeed)
+             int maxHp/* = 40*/, qreal walkingSpeed/* = 1.0*/)
 	: QObject(0)
 	, m_active(false)
     , m_maxHp(maxHp)
