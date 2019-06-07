@@ -16,7 +16,6 @@
 static const int TowerCost = 300;//设定每安置一个炮塔花费300金币
 static const int UpdateTowerCost = 800;//设定升级炮塔花费600金币
 static const int TowerSlowingAttackCost=500;//设定减速炮塔花费500金币
-int TowerMode=1;//通过转换让其建立不同性质的塔，默认为1（该按键尚未建立）
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -377,3 +376,14 @@ void MainWindow::on_continue_2_clicked()
 {
     m_stopgame = false;
 }
+
+void MainWindow::on_ChangeType_clicked()
+{
+    TowerMode=1;
+}
+
+void MainWindow::on_ChangeType_2_clicked()
+{
+    TowerMode=2;
+}
+
