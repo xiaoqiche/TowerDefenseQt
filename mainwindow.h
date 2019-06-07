@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QList>
+#include<QPushButton>
 #include "towerposition.h"
 #include "tower.h"
 
@@ -39,6 +40,11 @@ protected:
 private slots://QT的private槽 当前类及其子类可以将信号与之相连接
 	void updateMap();
 	void gameStart();
+    //void drawButton();//写一个画按钮的函数
+
+    void on_stop_clicked();
+
+    void on_continue_2_clicked();
 
 private:
 	void loadTowerPositions();
@@ -60,6 +66,7 @@ private:
 	int						m_playrGold;
 	bool					m_gameEnded;
 	bool					m_gameWin;
+    bool                    m_stopgame;
 	AudioPlayer *			m_audioPlayer;
 	QList<QVariant>			m_wavesInfo;
 	QList<TowerPosition>	m_towerPositionsList;
@@ -67,6 +74,7 @@ private:
 	QList<WayPoint *>		m_wayPointsList;
 	QList<Enemy *>			m_enemyList;
 	QList<Bullet *>			m_bulletList;
+    QList<QPushButton *>    m_button;
 };
 
 #endif // MAINWINDOW_H
