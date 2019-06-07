@@ -15,6 +15,7 @@
 
 static const int TowerCost = 300;//设定每安置一个炮塔花费300金币
 static const int UpdateTowerCost = 400;//设定升级炮塔花费400金币
+int TowerMode=1;//通过转换让其建立不同性质的塔，默认为1（该按键尚未建立）
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -113,9 +114,9 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 {
 	QPoint pressPos = event->pos();
 	auto it = m_towerPositionsList.begin();
-	while (it != m_towerPositionsList.end())
+    while (it != m_towerPositionsList.end())
 	{
-		if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower())
+        if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower()  && 1==TowerMode)
 		{
 			m_audioPlayer->playSound(TowerPlaceSound);
 			m_playrGold -= TowerCost;
@@ -127,8 +128,30 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 			update();
 			break;
 		}
-        if (canUpgradeTower() && it->containPoint(pressPos))
+        if (canUpgradeTower() && it->containPoint(pressPos) && 1==TowerMode)
         {
+            m_audioPlayer->playSound(TowerPlaceSound);
+            m_playrGold -= UpdateTowerCost;
+
+            Tower *tower = new Tower2(it->centerPos(), this);
+            m_towersList.push_back(tower);
+            update();
+            break;
+        }
+        if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower() && 2==TowerMode)
+        {//为第二种形式时建立第二种塔
+            m_audioPlayer->playSound(TowerPlaceSound);
+            m_playrGold -= TowerCost;
+            it->setHasTower();
+
+            Tower *tower = new Tower(it->centerPos(), this);
+            tower->setTowerLevel(1);
+            m_towersList.push_back(tower);
+            update();
+            break;
+        }
+        if (canUpgradeTower() && it->containPoint(pressPos) && 2==TowerMode)
+        {//为第二种形式时建立第二种塔
             m_audioPlayer->playSound(TowerPlaceSound);
             m_playrGold -= UpdateTowerCost;
 

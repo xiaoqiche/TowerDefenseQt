@@ -50,12 +50,20 @@ protected:
 	static const QSize ms_fixedSize;
 };
 
-class Tower2:public Tower{
+class Tower2:public Tower
+{
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
     Tower2(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/towerUpgrade1.png"));
     ~Tower2();
+};
 
+class TowerRangeAttack:public Tower
+{
+    Q_OBJECT//所有应用QT槽的类都需要声明
+public:
+    TowerRangeAttack(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/tower2.png"));
+    ~TowerRangeAttack();
 };
 
 #endif // TOWER_H

@@ -10,7 +10,7 @@ class QPainter;
 class Enemy;
 class MainWindow;
 
-class Bullet : QObject
+class Bullet :public QObject
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
 	Q_PROPERTY(QPoint m_currentPos READ currentPos WRITE setCurrentPos)
@@ -24,10 +24,10 @@ public:
 	void setCurrentPos(QPoint pos);
 	QPoint currentPos() const;
 
-private slots:
+public slots:
 	void hitTarget();
 
-private:
+protected:
 	const QPoint	m_startPos;
 	const QPoint	m_targetPos;
 	const QPixmap	m_sprite;
@@ -37,6 +37,17 @@ private:
 	int				m_damage;
 
 	static const QSize ms_fixedSize;
+};
+
+class BulletRangeAttack:public Bullet
+{
+    Q_OBJECT//所有应用QT槽的类都需要声明
+    Q_PROPERTY(QPoint m_currentPos READ currentPos WRITE setCurrentPos)
+
+public:
+    BulletRangeAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
+           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/froze1.png"));
+    ~BulletRangeAttack();
 };
 
 #endif // BULLET_H
