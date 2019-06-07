@@ -46,6 +46,7 @@ private:
 	bool loadWave();
 	bool canBuyTower() const;
     bool canUpgradeTower() const;
+    bool canBuySlowingAttackTower() const;
 	void drawWave(QPainter *painter);
 	void drawHP(QPainter *painter);
 	void drawPlayerGold(QPainter *painter);

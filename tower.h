@@ -22,7 +22,7 @@ public:
 	void checkEnemyInRange();
 	void targetKilled();
     virtual void attackEnemy();
-	void chooseEnemyForAttack(Enemy *enemy);
+    virtual void chooseEnemyForAttack(Enemy *enemy);
 	void removeBullet();
 	void damageEnemy();
 	void lostSightOfEnemy();
@@ -33,6 +33,7 @@ public slots:
 	void shootWeapon();
 
 protected:
+    int             m_towerType;
     int             m_towerLevel;
 	bool			m_attacking;
 	int				m_attackRange;	// 代表塔可以攻击到敌人的距离
@@ -58,12 +59,13 @@ public:
     ~Tower2();
 };
 
-class TowerRangeAttack:public Tower
+class TowerSlowingAttack:public Tower
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
-    TowerRangeAttack(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/tower2.png"));
-    ~TowerRangeAttack();
+    TowerSlowingAttack(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/tower2.png"));
+    ~TowerSlowingAttack();
+    void chooseEnemyForAttack(Enemy *enemy);
 };
 
 #endif // TOWER_H

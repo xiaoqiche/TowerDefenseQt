@@ -28,6 +28,7 @@ public:
     virtual void getRemoved();
     virtual void getAttacked(Tower *attacker);
     virtual void gotLostSight(Tower *attacker);
+    virtual void slowDown();
 	QPoint pos() const;
 
 public slots:

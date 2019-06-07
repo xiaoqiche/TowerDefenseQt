@@ -159,6 +159,14 @@ Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
     m_speedUp = false;
 }
 
+void Enemy::slowDown()
+{
+    if(m_walkingSpeed==1)
+        m_walkingSpeed=0.5;
+    if(m_walkingSpeed==3)
+        m_walkingSpeed=1.5;
+}
+
 Enemy2::~Enemy2()
 {
     m_attackedTowersList.clear();

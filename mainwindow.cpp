@@ -14,7 +14,8 @@
 #include <QtDebug>
 
 static const int TowerCost = 300;//设定每安置一个炮塔花费300金币
-static const int UpdateTowerCost = 400;//设定升级炮塔花费400金币
+static const int UpdateTowerCost = 800;//设定升级炮塔花费600金币
+static const int TowerSlowingAttackCost=500;//设定减速炮塔花费500金币
 int TowerMode=1;//通过转换让其建立不同性质的塔，默认为1（该按键尚未建立）
 
 MainWindow::MainWindow(QWidget *parent)
@@ -122,7 +123,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 			m_playrGold -= TowerCost;
 			it->setHasTower();
 
-			Tower *tower = new Tower(it->centerPos(), this);
+            Tower *tower = new Tower(it->centerPos(), this);
             tower->setTowerLevel(1);
 			m_towersList.push_back(tower);
 			update();
@@ -134,6 +135,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
             m_playrGold -= UpdateTowerCost;
 
             Tower *tower = new Tower2(it->centerPos(), this);
+            tower->setTowerLevel(2);
             m_towersList.push_back(tower);
             update();
             break;
@@ -141,21 +143,11 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower() && 2==TowerMode)
         {//为第二种形式时建立第二种塔
             m_audioPlayer->playSound(TowerPlaceSound);
-            m_playrGold -= TowerCost;
+            m_playrGold -= TowerSlowingAttackCost;
             it->setHasTower();
 
-            Tower *tower = new Tower(it->centerPos(), this);
+            Tower *tower = new TowerSlowingAttack(it->centerPos(), this);
             tower->setTowerLevel(1);
-            m_towersList.push_back(tower);
-            update();
-            break;
-        }
-        if (canUpgradeTower() && it->containPoint(pressPos) && 2==TowerMode)
-        {//为第二种形式时建立第二种塔
-            m_audioPlayer->playSound(TowerPlaceSound);
-            m_playrGold -= UpdateTowerCost;
-
-            Tower *tower = new Tower2(it->centerPos(), this);
             m_towersList.push_back(tower);
             update();
             break;
@@ -169,6 +161,13 @@ bool MainWindow::canBuyTower() const
 	if (m_playrGold >= TowerCost)
 		return true;
 	return false;
+}
+
+bool MainWindow::canBuySlowingAttackTower()const
+{
+    if(m_playrGold >= TowerSlowingAttackCost)
+        return true;
+    return false;
 }
 
 bool MainWindow::canUpgradeTower() const
