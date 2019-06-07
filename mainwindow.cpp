@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
 	timer->start(30);
 
 	// 设置300ms后游戏启动
+    //手动实现按钮，暂时没有成功
+    //QTimer::singleShot(300,this,SLOT(drawButton()));
+
 	QTimer::singleShot(300, this, SLOT(gameStart()));
 }
 
@@ -252,6 +255,14 @@ void MainWindow::updateMap()
 		tower->checkEnemyInRange();
 	update();
 }
+
+/*暂时没成功
+void MainWindow::drawButton(){
+    QPushButton *button1 = new QPushButton(QPixmap(":/image/bullet2.png")用图创建,
+                                           "按钮的名字",this);
+    button1->setGeometry(10,10,200,200); //前两个参数是位置坐标，后两个参数是按钮的尺寸。
+    m_button.push_back(button1);
+}*/
 
 void MainWindow::preLoadWavesInfo()
 {
