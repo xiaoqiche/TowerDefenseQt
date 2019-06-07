@@ -30,7 +30,7 @@ public:
     int getTowerLevel();
 
 public slots:
-	void shootWeapon();
+    virtual void shootWeapon();
 
 protected:
     int             m_towerType;
@@ -66,6 +66,10 @@ public:
     TowerSlowingAttack(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/tower2.png"));
     ~TowerSlowingAttack();
     void chooseEnemyForAttack(Enemy *enemy);
+
+public slots:
+    void shootWeapon();
+
 };
 
 #endif // TOWER_H

@@ -17,7 +17,7 @@ class Bullet :public QObject
 
 public:
 	Bullet(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
-		   MainWindow *game, const QPixmap &sprite = QPixmap(":/image/bullet.png"));
+           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/bullet.png"));
 
 	void draw(QPainter *painter) const;
 	void move();
@@ -46,7 +46,7 @@ class BulletSlowingAttack:public Bullet
 
 public:
     BulletSlowingAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
-           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/froze01.png"));
+           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/tower2.png"));
     ~BulletSlowingAttack();
 };
 

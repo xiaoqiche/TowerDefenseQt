@@ -161,9 +161,9 @@ Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
 
 void Enemy::slowDown()
 {
-    if(m_walkingSpeed==1)
+    if(1==m_walkingSpeed)
         m_walkingSpeed=0.5;
-    if(m_walkingSpeed==3)
+    if(3==m_walkingSpeed)
         m_walkingSpeed=1.5;
 }
 

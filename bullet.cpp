@@ -18,7 +18,7 @@ Bullet::Bullet(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
 {}
 
 BulletSlowingAttack::BulletSlowingAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
-                                     MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/froze1.png")*/)
+                                     MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/tower2.png")*/)
     : Bullet(startPos,targetPoint,damage,target,game,sprite)
 {}
 
