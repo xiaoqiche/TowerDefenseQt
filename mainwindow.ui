@@ -14,32 +14,33 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QPushButton" name="stop">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>960</width>
-      <height>640</height>
+      <y>300</y>
+      <width>61</width>
+      <height>20</height>
      </rect>
     </property>
-    <property name="minimumSize">
-     <size>
-      <width>480</width>
-      <height>320</height>
-     </size>
+    <property name="text">
+     <string>暂停</string>
     </property>
-    <property name="maximumSize">
-     <size>
-      <width>960</width>
-      <height>640</height>
-     </size>
+   </widget>
+   <widget class="QPushButton" name="continue_2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>300</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
+    <property name="text">
+     <string>继续</string>
     </property>
    </widget>
   </widget>
