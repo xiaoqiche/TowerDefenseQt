@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QList>
-#include<QPushButton>
+#include <QPushButton>
 #include "towerposition.h"
 #include "tower.h"
 
@@ -41,10 +41,10 @@ private slots://QT的private槽 当前类及其子类可以将信号与之相连
 	void updateMap();
 	void gameStart();
     //void drawButton();//写一个画按钮的函数
-
     void on_stop_clicked();
-
     void on_continue_2_clicked();
+    void on_ChangeType_clicked();
+    void on_ChangeType_2_clicked();
 
 private:
 	void loadTowerPositions();
@@ -61,6 +61,7 @@ private:
 
 private:
 	Ui::MainWindow *		ui;
+    int                     TowerMode=2;//通过转换让其建立不同性质的塔，默认为1
 	int						m_waves;
 	int						m_playerHp;
 	int						m_playrGold;
