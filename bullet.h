@@ -10,7 +10,7 @@ class QPainter;
 class Enemy;
 class MainWindow;
 
-class Bullet : QObject
+class Bullet :public QObject
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
 	Q_PROPERTY(QPoint m_currentPos READ currentPos WRITE setCurrentPos)
