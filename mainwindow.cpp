@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_playrGold(100000)//先开挂
 	, m_gameEnded(false)
 	, m_gameWin(false)
+    , m_stopgame(false)
 {
 	ui->setupUi(this);
 
@@ -253,11 +254,13 @@ void MainWindow::addBullet(Bullet *bullet)
 
 void MainWindow::updateMap()
 {
-	foreach (Enemy *enemy, m_enemyList)
-		enemy->move();
-	foreach (Tower *tower, m_towersList)
-		tower->checkEnemyInRange();
-	update();
+    if(!m_stopgame){//如果暂停就不更新了
+        foreach (Enemy *enemy, m_enemyList)
+            enemy->move();
+        foreach (Tower *tower, m_towersList)
+            tower->checkEnemyInRange();
+        update();
+    }
 }
 
 /*暂时没成功
@@ -323,4 +326,14 @@ QList<Enemy *> MainWindow::enemyList() const//调取怪物表
 void MainWindow::gameStart()
 {
 	loadWave();
+}
+
+void MainWindow::on_stop_clicked()
+{
+    m_stopgame = true;
+}
+
+void MainWindow::on_continue_2_clicked()
+{
+    m_stopgame = false;
 }
