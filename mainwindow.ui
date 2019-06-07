@@ -7,37 +7,28 @@
     <x>0</x>
     <y>0</y>
     <width>480</width>
-    <height>320</height>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="stop">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>289</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>暂停</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="continue_2">
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>290</y>
-      <width>61</width>
-      <height>31</height>
+      <y>370</y>
+      <width>60</width>
+      <height>30</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	font: 75 8pt &quot;Adobe 楷体 Std R&quot;;
+	background-color: rgb(255, 255, 127);
+}
+</string>
     </property>
     <property name="text">
      <string>继续</string>
@@ -47,31 +38,68 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>260</y>
-      <width>61</width>
-      <height>31</height>
+      <y>320</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-image: url(:/image/tower.png);
+}</string>
+    </property>
     <property name="text">
-     <string>Type1</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="ChangeType_2">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>260</y>
-      <width>61</width>
-      <height>31</height>
+      <x>50</x>
+      <y>320</y>
+      <width>50</width>
+      <height>50</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-image: url(:/image/tower2.png);
+}</string>
+    </property>
     <property name="text">
-     <string>Type2</string>
+     <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="stop">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>370</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	font: 75 8pt &quot;Adobe 楷体 Std R&quot;;
+	background-color: rgb(255, 255, 127);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>暂停</string>
+    </property>
+   </widget>
+   <zorder>ChangeType_2</zorder>
+   <zorder>continue_2</zorder>
+   <zorder>ChangeType</zorder>
+   <zorder>stop</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
