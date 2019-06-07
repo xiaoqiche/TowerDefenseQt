@@ -135,7 +135,7 @@ void Tower::chooseEnemyForAttack(Enemy *enemy)
 
 void Tower::shootWeapon()
 {
-	Bullet *bullet = new Bullet(m_pos, m_chooseEnemy->pos(), m_damage, m_chooseEnemy, m_game);
+    Bullet *bullet = new BulletSlowingAttack(m_pos, m_chooseEnemy->pos(), m_damage, m_chooseEnemy, m_game);
 	bullet->move();
 	m_game->addBullet(bullet);
 }

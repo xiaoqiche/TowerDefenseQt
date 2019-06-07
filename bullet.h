@@ -39,15 +39,15 @@ protected:
 	static const QSize ms_fixedSize;
 };
 
-class BulletRangeAttack:public Bullet
+class BulletSlowingAttack:public Bullet
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
     Q_PROPERTY(QPoint m_currentPos READ currentPos WRITE setCurrentPos)
 
 public:
-    BulletRangeAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
-           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/froze1.png"));
-    ~BulletRangeAttack();
+    BulletSlowingAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
+           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/froze01.png"));
+    ~BulletSlowingAttack();
 };
 
 #endif // BULLET_H

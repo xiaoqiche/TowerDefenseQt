@@ -17,12 +17,12 @@ Bullet::Bullet(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
 	, m_damage(damage)
 {}
 
-BulletRangeAttack::BulletRangeAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
-                                     MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/froze.png")*/)
+BulletSlowingAttack::BulletSlowingAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
+                                     MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/froze1.png")*/)
     : Bullet(startPos,targetPoint,damage,target,game,sprite)
 {}
 
-BulletRangeAttack::~BulletRangeAttack()
+BulletSlowingAttack::~BulletSlowingAttack()
 {}
 
 void Bullet::draw(QPainter *painter) const
