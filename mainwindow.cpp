@@ -9,7 +9,7 @@
 #include <QMouseEvent>
 #include <QtGlobal>
 #include <QMessageBox>
-#include <QTimer>
+#include <QTimer>//时间
 #include <QXmlStreamReader>
 #include <QtDebug>
 
@@ -19,8 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
 	, m_waves(0)
-	, m_playerHp(5)
-	, m_playrGold(1000)
+    , m_playerHp(50)//调多点以免死掉
+    , m_playrGold(100000)//先开挂
 	, m_gameEnded(false)
 	, m_gameWin(false)
 {
@@ -33,14 +33,15 @@ MainWindow::MainWindow(QWidget *parent)
 	m_audioPlayer = new AudioPlayer(this);
 	m_audioPlayer->startBGM();
 
+    //一个循环结构的时间检定，30ms做一次
 	QTimer *timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(updateMap()));
 	timer->start(30);
 
-	// 设置300ms后游戏启动
     //手动实现按钮，暂时没有成功
     //QTimer::singleShot(300,this,SLOT(drawButton()));
 
+    // 设置300ms后游戏启动,singleShot是在该时间间隔之后运行一次
 	QTimer::singleShot(300, this, SLOT(gameStart()));
 }
 
@@ -48,6 +49,8 @@ MainWindow::~MainWindow()
 {
 	delete ui;
 }
+
+
 
 void MainWindow::loadTowerPositions()
 {
@@ -157,6 +160,7 @@ void MainWindow::drawPlayerGold(QPainter *painter)
 	painter->setPen(QPen(Qt::red));
 	painter->drawText(QRect(200, 5, 200, 25), QString("GOLD : %1").arg(m_playrGold));
 }
+
 
 void MainWindow::doGameOver()
 {
