@@ -75,7 +75,7 @@ class Enemy3 : public Enemy
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
     Enemy3(WayPoint *startWayPoint, MainWindow *game,
-          const QPixmap &sprite = QPixmap(":/image/tower.png"),
+          const QPixmap &sprite = QPixmap(":/image/enemy 1-1.png"),
           int maxHp = 20,qreal walkingSpeed = 1.0,
           int level = 1);
     ~Enemy3();
