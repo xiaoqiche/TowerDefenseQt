@@ -25,5 +25,7 @@
         <file>image/bulletSlow.png</file>
         <file>image/towerUpgrade1.png</file>
         <file>image/enemy 1-1.png</file>
+        <file>config/TowersPosition02.plist</file>
+        <file>config/Waves02.plist</file>
     </qresource>
 </RCC>
