@@ -19,7 +19,7 @@ class Enemy : public QObject
 public:
     Enemy(WayPoint *startWayPoint, MainWindow *game,
           const QPixmap &sprite = QPixmap(":/image/enemy.png"),
-          int maxHp = 40,qreal walkingSpeed = 1.0);//血量和速度应该是可以更改的部分
+          int maxHp = 40,qreal walkingSpeed = 2.0);//血量和速度应该是可以更改的部分
 	~Enemy();
     //设置为虚函数
     virtual void draw(QPainter *painter) const;
