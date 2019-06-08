@@ -29,6 +29,7 @@ public:
     virtual void getRemoved();
     virtual void getAttacked(Tower *attacker);
     virtual void gotLostSight(Tower *attacker);
+    virtual void setLevel(int level);//设置等级
     void slowDown();
 	QPoint pos() const;
 
@@ -65,22 +66,25 @@ public:
     ~Enemy2();
 
     void getDamage(int damage);//受伤后有加速效果
+    void setLevel(int level);
 
 protected:
     bool m_speedUp;//判断是否是第一次被攻击
 };
 
+//带有减伤功能的怪物
 class Enemy3 : public Enemy
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
     Enemy3(WayPoint *startWayPoint, MainWindow *game,
           const QPixmap &sprite = QPixmap(":/image/tower.png"),
-          int maxHp = 20,qreal walkingSpeed = 1.0,
+          int maxHp = 40,qreal walkingSpeed = 1.0,
           int level = 1);
     ~Enemy3();
 
-    void getDamage(int damage);//受伤后有加速效果
+    void getDamage(int damage);//特殊减伤
+    void setLevel(int level);
 
 protected:
     bool m_recover;//判断是否是第一次被攻击
