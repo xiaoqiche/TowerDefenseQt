@@ -137,12 +137,18 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 		}
         if (canUpgradeTower() && it->containPoint(pressPos) && 1==TowerMode)
         {
-            m_audioPlayer->playSound(TowerPlaceSound);
-            m_playrGold -= UpdateTowerCost;
 
-            Tower *tower = new Tower2(it->centerPos(), this);
-            tower->setTowerLevel(2);
-            m_towersList.push_back(tower);
+
+            foreach(Tower *attacker, m_towersList)
+            {
+                if(it->centerPos()==attacker->getPosition())
+                {
+                    attacker->setTowerLevel(2);
+                    m_audioPlayer->playSound(TowerPlaceSound);
+                    m_playrGold -= UpdateTowerCost;
+                }
+
+            }
             update();
             break;
         }
@@ -155,6 +161,23 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
             Tower *tower = new TowerSlowingAttack(it->centerPos(), this);
             tower->setTowerLevel(1);
             m_towersList.push_back(tower);
+            update();
+            break;
+        }
+        if (canUpgradeTower() && it->containPoint(pressPos) && 2==TowerMode)
+        {
+
+
+            foreach(Tower *attacker, m_towersList)
+            {
+                if(it->centerPos()==attacker->getPosition())
+                {
+                    attacker->setTowerLevel(2);
+                    m_audioPlayer->playSound(TowerPlaceSound);
+                    m_playrGold -= UpdateTowerCost;
+                }
+
+            }
             update();
             break;
         }

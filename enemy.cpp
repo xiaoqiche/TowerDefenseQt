@@ -112,8 +112,7 @@ void Enemy::draw(QPainter *painter) const
 	painter->translate(m_pos);
 	painter->rotate(m_rotationSprite);
 	// 绘制敌人
-	painter->drawPixmap(offsetPoint, m_sprite);
-
+    painter->drawPixmap(offsetPoint, m_sprite);
 	painter->restore();
 }
 

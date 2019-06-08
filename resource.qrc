@@ -24,5 +24,6 @@
         <file>image/froze01.png</file>
         <file>image/bulletSlow.png</file>
         <file>image/towerUpgrade1.png</file>
+        <file>image/enemy 1-1.png</file>
     </qresource>
 </RCC>
