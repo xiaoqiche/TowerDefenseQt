@@ -168,7 +168,6 @@ Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
     m_speedUp = false;
 }
 
-
 Enemy2::~Enemy2()
 {
     m_attackedTowersList.clear();
