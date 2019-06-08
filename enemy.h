@@ -57,7 +57,7 @@ class Enemy2 : public Enemy
 public:
     Enemy2(WayPoint *startWayPoint, MainWindow *game,
           const QPixmap &sprite = QPixmap(":/image/enemy_brightYellow.png"),
-          int maxHp = 20,qreal walkingSpeed = 1.0);//血量和速度应该是可以更改的部分
+          int maxHp = 20,qreal walkingSpeed = 2.0);//血量和速度应该是可以更改的部分
     ~Enemy2();
 
     void getDamage(int damage);//受伤后有加速效果

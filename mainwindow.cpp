@@ -164,7 +164,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 bool MainWindow::canBuyTower() const
 {
-	if (m_playrGold >= TowerCost)
+    if (m_playrGold >= TowerCost)
 		return true;
 	return false;
 }

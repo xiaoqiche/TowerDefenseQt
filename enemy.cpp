@@ -161,7 +161,7 @@ Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
 
 void Enemy::slowDown()
 {
-    m_walkingSpeed=0.5;
+    m_walkingSpeed=1;
 }
 
 Enemy2::~Enemy2()
@@ -175,6 +175,6 @@ void Enemy2::getDamage(int damage){
     Enemy::getDamage(damage);
     if(m_speedUp == false){
         m_speedUp = true;
-        m_walkingSpeed = 3.0;
+        m_walkingSpeed = 5.0;
     }
 }

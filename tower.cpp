@@ -172,6 +172,7 @@ void TowerSlowingAttack::chooseEnemyForAttack(Enemy *enemy)
 {
     m_chooseEnemy = enemy;
     attackEnemy();
+    //enemy->slowDown();
     m_chooseEnemy->getAttacked(this);
 }
 
