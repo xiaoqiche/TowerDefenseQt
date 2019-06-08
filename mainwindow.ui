@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>289</y>
+      <y>290</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -46,8 +46,8 @@
    <widget class="QPushButton" name="ChangeType">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>260</y>
+      <x>120</x>
+      <y>290</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -62,8 +62,8 @@
    <widget class="QPushButton" name="ChangeType_2">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>260</y>
+      <x>180</x>
+      <y>290</y>
       <width>61</width>
       <height>31</height>
      </rect>
