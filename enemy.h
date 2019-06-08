@@ -28,7 +28,7 @@ public:
     virtual void getRemoved();
     virtual void getAttacked(Tower *attacker);
     virtual void gotLostSight(Tower *attacker);
-    virtual void slowDown();
+    void slowDown();
 	QPoint pos() const;
 
 public slots:
@@ -38,7 +38,7 @@ protected://为继承做准备
 	bool			m_active;
 	int				m_maxHp;
 	int				m_currentHp;
-	qreal			m_walkingSpeed;
+    qreal			m_walkingSpeed;
 	qreal			m_rotationSprite;
 
 	QPoint			m_pos;

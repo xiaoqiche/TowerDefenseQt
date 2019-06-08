@@ -137,7 +137,7 @@ void Enemy::getDamage(int damage)
 
 void Enemy::getAttacked(Tower *attacker)
 {
-	m_attackedTowersList.push_back(attacker);
+    m_attackedTowersList.push_back(attacker);
 }
 
 // 表明敌人已经逃离了攻击范围
@@ -161,10 +161,7 @@ Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
 
 void Enemy::slowDown()
 {
-    if(1==m_walkingSpeed)
-        m_walkingSpeed=0.5;
-    if(3==m_walkingSpeed)
-        m_walkingSpeed=1.5;
+    m_walkingSpeed=0.5;
 }
 
 Enemy2::~Enemy2()
