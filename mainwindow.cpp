@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	ui->setupUi(this);
 
-	preLoadWavesInfo();
+    preLoadWavesInfo();//从plist读取预先设定的怪物数据
 	loadTowerPositions();
 	addWayPoints();
 
