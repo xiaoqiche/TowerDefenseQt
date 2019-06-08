@@ -17,12 +17,13 @@ const QSize Enemy::ms_fixedSize(52, 52);
 
 Enemy::Enemy(WayPoint *startWayPoint, MainWindow *game,
              const QPixmap &sprite/* = QPixmap(":/image/enemy.png")*/,
-             int maxHp/* = 40*/, qreal walkingSpeed/* = 1.0*/)
+             int maxHp/* = 40*/, qreal walkingSpeed/* = 1.0*/, int level/*=1*/)
 	: QObject(0)
 	, m_active(false)
     , m_maxHp(maxHp)
     , m_currentHp(maxHp)
     , m_walkingSpeed(walkingSpeed)
+    , m_level(level)
 	, m_rotationSprite(0.0)
 	, m_pos(startWayPoint->pos())
 	, m_destinationWayPoint(startWayPoint->nextWayPoint())
@@ -151,21 +152,23 @@ QPoint Enemy::pos() const
 	return m_pos;
 }
 
+void Enemy::slowDown()
+{
+    if(!m_isSlowed){
+        m_walkingSpeed = m_walkingSpeed*0.5;
+    }
+}
+
+//Enemy2-----------
 Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
              const QPixmap &sprite,
-             int maxHp, qreal walkingSpeed)
-    :Enemy(startWayPoint,game,sprite,maxHp,walkingSpeed)
+             int maxHp, qreal walkingSpeed, int level)
+    :Enemy(startWayPoint,game,sprite,maxHp,walkingSpeed,level)
 {
     m_speedUp = false;
 }
 
-void Enemy::slowDown()
-{
-    if(1==m_walkingSpeed)
-        m_walkingSpeed=0.5;
-    if(3==m_walkingSpeed)
-        m_walkingSpeed=1.5;
-}
+
 
 Enemy2::~Enemy2()
 {
@@ -178,6 +181,33 @@ void Enemy2::getDamage(int damage){
     Enemy::getDamage(damage);
     if(m_speedUp == false){
         m_speedUp = true;
-        m_walkingSpeed = 3.0;
+        m_walkingSpeed = 3.0*m_walkingSpeed;
+    }
+}
+
+//Enemy3-----------
+Enemy3::Enemy3(WayPoint *startWayPoint, MainWindow *game,
+             const QPixmap &sprite,
+             int maxHp, qreal walkingSpeed, int level)
+    :Enemy(startWayPoint,game,sprite,maxHp,walkingSpeed,level)
+{
+    m_recover = false;
+}
+
+Enemy3::~Enemy3()
+{
+    m_attackedTowersList.clear();
+    m_destinationWayPoint = NULL;
+    m_game = NULL;
+}
+
+void Enemy3::getDamage(int damage){
+    if(m_recover == false){
+        m_recover = true;
+        Enemy::getDamage(int(damage/2));
+    }
+    else{
+        m_recover = false;
+        Enemy::getDamage(damage);
     }
 }

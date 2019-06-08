@@ -19,7 +19,8 @@ class Enemy : public QObject
 public:
     Enemy(WayPoint *startWayPoint, MainWindow *game,
           const QPixmap &sprite = QPixmap(":/image/enemy.png"),
-          int maxHp = 40,qreal walkingSpeed = 1.0);//血量和速度应该是可以更改的部分
+          int maxHp = 40,qreal walkingSpeed = 1.0,
+          int level = 1);
 	~Enemy();
     //设置为虚函数
     virtual void draw(QPainter *painter) const;
@@ -28,16 +29,18 @@ public:
     virtual void getRemoved();
     virtual void getAttacked(Tower *attacker);
     virtual void gotLostSight(Tower *attacker);
-    virtual void slowDown();
 	QPoint pos() const;
 
 public slots:
 	void doActivate();
+    void slowDown();
 
 protected://为继承做准备
 	bool			m_active;
+    bool            m_isSlowed;
 	int				m_maxHp;
 	int				m_currentHp;
+    int             m_level;
 	qreal			m_walkingSpeed;
 	qreal			m_rotationSprite;
 
@@ -57,7 +60,8 @@ class Enemy2 : public Enemy
 public:
     Enemy2(WayPoint *startWayPoint, MainWindow *game,
           const QPixmap &sprite = QPixmap(":/image/enemy_brightYellow.png"),
-          int maxHp = 20,qreal walkingSpeed = 1.0);//血量和速度应该是可以更改的部分
+          int maxHp = 20,qreal walkingSpeed = 1.0,
+          int level = 1);
     ~Enemy2();
 
     void getDamage(int damage);//受伤后有加速效果
@@ -66,5 +70,19 @@ protected:
     bool m_speedUp;//判断是否是第一次被攻击
 };
 
+class Enemy3 : public Enemy
+{
+    Q_OBJECT//所有应用QT槽的类都需要声明
+public:
+    Enemy3(WayPoint *startWayPoint, MainWindow *game,
+          const QPixmap &sprite = QPixmap(":/image/tower.png"),
+          int maxHp = 20,qreal walkingSpeed = 1.0,
+          int level = 1);
+    ~Enemy3();
 
+    void getDamage(int damage);//受伤后有加速效果
+
+protected:
+    bool m_recover;//判断是否是第一次被攻击
+};
 #endif // ENEMY_H
