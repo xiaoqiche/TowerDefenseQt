@@ -115,11 +115,10 @@ void MainWindow::paintEvent(QPaintEvent *)
 		return;
 	}
 
-	QPixmap cachePix(":/image/Bg.png");
-	QPainter cachePainter(&cachePix);
+
 
     if (m_gameWin_first&&(!m_gameWin_final)){
-        //
+        //换图之后
         m_towerPositionsList.clear();
         m_wayPointsList.clear();
 
@@ -177,9 +176,6 @@ void MainWindow::paintEvent(QPaintEvent *)
         painter.drawPixmap(0, 0, cachePix);
     }
 
-
-	QPainter painter(this);
-	painter.drawPixmap(0, 0, cachePix);
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
