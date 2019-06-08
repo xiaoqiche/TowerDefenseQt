@@ -39,6 +39,12 @@ Enemy::~Enemy()
     m_game = NULL;//不再指向主窗
 }
 
+void Enemy::setLevel(int level){
+    m_level = level;
+    m_maxHp = 35 + 5*level;//40是这类怪的基础血量
+    m_currentHp = m_maxHp;
+}
+
 void Enemy::doActivate()
 {
 	m_active = true;
@@ -182,6 +188,12 @@ void Enemy2::getDamage(int damage){
     }
 }
 
+void Enemy2::setLevel(int level){
+    m_level = level;
+    m_maxHp = 15 + 5*level;//20是这类怪的基础血量
+    m_currentHp = m_maxHp;
+}
+
 //Enemy3-----------
 Enemy3::Enemy3(WayPoint *startWayPoint, MainWindow *game,
              const QPixmap &sprite,
@@ -200,11 +212,16 @@ Enemy3::~Enemy3()
 
 void Enemy3::getDamage(int damage){
     if(m_recover == false){
-        m_recover = true;
-        Enemy::getDamage(int(damage/2));
+        m_recover = true;//减免第一次伤害
     }
     else{
         m_recover = false;
-        Enemy::getDamage(damage);
+        Enemy::getDamage(damage/2);//之后伤害减半
     }
+}
+
+void Enemy3::setLevel(int level){
+    m_level = level;
+    m_maxHp = 30 + 10*level;
+    m_currentHp = m_maxHp;
 }
