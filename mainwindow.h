@@ -39,8 +39,7 @@ protected:
 
 private slots://QT的private槽 当前类及其子类可以将信号与之相连接
 	void updateMap();
-	void gameStart();
-    //void drawButton();//写一个画按钮的函数
+    void gameStart();
     void on_stop_clicked();
     void on_continue_2_clicked();
     void on_ChangeType_clicked();
@@ -69,7 +68,7 @@ private:
 	bool					m_gameWin;
     bool                    m_stopgame;
 	AudioPlayer *			m_audioPlayer;
-	QList<QVariant>			m_wavesInfo;
+    QList<QVariant>			m_wavesInfo;
 	QList<TowerPosition>	m_towerPositionsList;
 	QList<Tower *>			m_towersList;
 	QList<WayPoint *>		m_wayPointsList;

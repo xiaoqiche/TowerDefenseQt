@@ -11,7 +11,7 @@ AudioPlayer::AudioPlayer(QObject *parent)
 	, m_backgroundMusic(NULL)
 {
 	// 创建一直播放的背景音乐
-	QUrl backgroundMusicUrl = QUrl::fromLocalFile(s_curDir + "music/8bitDungeonLevel.mp3");
+    QUrl backgroundMusicUrl = QUrl::fromLocalFile(s_curDir + "music/8bitDungeonLevel.mp3");
 	if (QFile::exists(backgroundMusicUrl.toLocalFile()))
 	{
 		m_backgroundMusic = new QMediaPlayer(this);
