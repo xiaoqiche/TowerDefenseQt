@@ -18,16 +18,17 @@ public:
     Tower(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/tower.png"));
 	~Tower();
 
-	void draw(QPainter *painter) const;
-	void checkEnemyInRange();
-	void targetKilled();
+    virtual void draw(QPainter *painter) const;
+    virtual void checkEnemyInRange();
+    virtual void targetKilled();
     virtual void attackEnemy();
     virtual void chooseEnemyForAttack(Enemy *enemy);
-	void removeBullet();
-	void damageEnemy();
-	void lostSightOfEnemy();
-    void setTowerLevel(int level);
-    int getTowerLevel();
+    void removeBullet();
+    void damageEnemy();
+    virtual void lostSightOfEnemy();
+
+    virtual void setTowerLevel(int level);
+    virtual int  getTowerLevel();
 
 public slots:
     virtual void shootWeapon();
@@ -49,14 +50,15 @@ protected:
 	const QPixmap	m_sprite;
 
 	static const QSize ms_fixedSize;
+
 };
 
-class Tower2:public Tower
-{
+class Tower2:public Tower{
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
     Tower2(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/towerUpgrade1.png"));
     ~Tower2();
+
 };
 
 class TowerSlowingAttack:public Tower
@@ -71,5 +73,6 @@ public slots:
     void shootWeapon();
 
 };
+
 
 #endif // TOWER_H

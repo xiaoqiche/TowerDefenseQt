@@ -7,10 +7,10 @@ class QMediaPlayer;
 
 enum SoundType
 {
-	TowerPlaceSound,		// 放塔时的声音
-	LifeLoseSound,			// 基地费血时的声音
-	LaserShootSound,		// 打中敌人时的生意
-	EnemyDestorySound		// 敌人升天时的声音
+    TowerPlaceSound,		// 放塔时的声音
+    LifeLoseSound,			// 基地费血时的声音
+    LaserShootSound,		// 打中敌人时的生意
+    EnemyDestorySound		// 敌人升天时的声音
 };
 
 class AudioPlayer : public QObject
