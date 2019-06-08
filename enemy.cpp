@@ -33,9 +33,9 @@ Enemy::Enemy(WayPoint *startWayPoint, MainWindow *game,
 
 Enemy::~Enemy()
 {
-	m_attackedTowersList.clear();
-	m_destinationWayPoint = NULL;
-	m_game = NULL;
+    m_attackedTowersList.clear();//被攻击列表清空
+    m_destinationWayPoint = NULL;//路径点清空
+    m_game = NULL;//不再指向主窗
 }
 
 void Enemy::doActivate()
@@ -45,7 +45,7 @@ void Enemy::doActivate()
 
 void Enemy::move()
 {
-	if (!m_active)
+    if (!m_active)//没有激活的怪不能动
 		return;
 
 	if (collisionWithCircle(m_pos, 1, m_destinationWayPoint->pos(), 1))
@@ -96,7 +96,7 @@ void Enemy::draw(QPainter *painter) const
 	QRect healthBarBackRect(healthBarPoint, QSize(Health_Bar_Width, 2));
 	painter->drawRect(healthBarBackRect);
 
-	painter->setBrush(Qt::green);
+    painter->setBrush(Qt::green);
 	QRect healthBarRect(healthBarPoint, QSize((double)m_currentHp / m_maxHp * Health_Bar_Width, 2));
 	painter->drawRect(healthBarRect);
 
