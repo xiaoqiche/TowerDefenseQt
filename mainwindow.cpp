@@ -119,11 +119,6 @@ void MainWindow::paintEvent(QPaintEvent *)
 
     if (m_gameWin_first&&(!m_gameWin_final)){
         //换图之后
-
-
-        preLoadWavesInfo2();
-        loadTowerPositions2();
-        addWayPoints2();
         QPixmap cachePix2(":/image/Bg2.png");
         QPainter cachePainter2(&cachePix2);
 
@@ -400,6 +395,9 @@ void MainWindow::removedEnemy(Enemy *enemy)
                 m_towersList.clear();
                 m_towerPositionsList.clear();
                 m_wayPointsList.clear();
+                preLoadWavesInfo2();
+                loadTowerPositions2();
+                addWayPoints2();
             }
             else{
                 m_gameWin_final = true;
