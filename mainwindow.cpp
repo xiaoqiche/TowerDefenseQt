@@ -119,8 +119,7 @@ void MainWindow::paintEvent(QPaintEvent *)
 
     if (m_gameWin_first&&(!m_gameWin_final)){
         //换图之后
-        m_towerPositionsList.clear();
-        m_wayPointsList.clear();
+
 
         preLoadWavesInfo2();
         loadTowerPositions2();
@@ -389,6 +388,7 @@ void MainWindow::removedEnemy(Enemy *enemy)
 	m_enemyList.removeOne(enemy);
 	delete enemy;
 
+
     if (m_enemyList.empty())//没怪了就加一波
 	{
 		++m_waves;
@@ -398,12 +398,16 @@ void MainWindow::removedEnemy(Enemy *enemy)
                 m_gameWin_first = true;
                 // 游戏第一关胜利，切换到第二关
                 m_towersList.clear();
-            }else{
+                m_towerPositionsList.clear();
+                m_wayPointsList.clear();
+            }
+            else{
                 m_gameWin_final = true;
             }
             // 这里暂时以打印处理
 		}
 	}
+
 }
 
 void MainWindow::removedBullet(Bullet *bullet)
