@@ -188,7 +188,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 		{
 			m_audioPlayer->playSound(TowerPlaceSound);
 			m_playrGold -= TowerCost;
-			it->setHasTower();
+            it->setHasTower();
 
             Tower *tower = new Tower(it->centerPos(), this);
             tower->setTowerLevel(1);
@@ -202,7 +202,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
             foreach(Tower *attacker, m_towersList)
             {
-                if(it->centerPos()==attacker->getPosition())
+                if(it->centerPos()==attacker->getPosition() && 1==attacker->getTowerLevel())
                 {
                     attacker->setTowerLevel(2);
                     m_audioPlayer->playSound(TowerPlaceSound);

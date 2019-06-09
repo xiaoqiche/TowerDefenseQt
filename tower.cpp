@@ -74,6 +74,7 @@ QPoint Tower::getPosition()
 
 void Tower::setTowerLevel(int level)
 {
+    m_towerLevel=level;
     if(level==1)
     {
         m_towerType=1;
@@ -84,7 +85,6 @@ void Tower::setTowerLevel(int level)
     if(level==2)
     {
         //m_sprite=QPixmap(":/image/towerUpgrade1.png");
-        m_towerType=1;
         m_attackRange=100;
         m_damage=12;
         m_fireRate=800;
