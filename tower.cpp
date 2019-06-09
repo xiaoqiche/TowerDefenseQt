@@ -37,8 +37,8 @@ TowerSlowingAttack::TowerSlowingAttack(QPoint pos, MainWindow *game, const QPixm
     : Tower(pos,game,sprite)
 {
     m_towerType=2;
-    m_attackRange=100;
-    m_damage=15;
+    m_attackRange=70;
+    m_damage=10;
     m_fireRate=1000;
     m_fireRateTimer = new QTimer(this);
     connect(m_fireRateTimer, SIGNAL(timeout()), this, SLOT(shootWeapon()));
@@ -50,12 +50,13 @@ TowerSlowingAttack::~TowerSlowingAttack()
     m_fireRateTimer = NULL;
 }
 
-Tower2::Tower2(QPoint pos, MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/towerUpgrade.png"*/)
+
+Tower2::Tower2(QPoint pos, MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/tower.png"*/)
     : Tower(pos,game,sprite)
 {
     m_attackRange=100;
-    m_damage=15;
-    m_fireRate=1000;
+    m_damage=12;
+    m_fireRate=800;
     m_fireRateTimer = new QTimer(this);
     connect(m_fireRateTimer, SIGNAL(timeout()), this, SLOT(shootWeapon()));
 }
@@ -66,15 +67,35 @@ Tower2::~Tower2()
     m_fireRateTimer = NULL;
 }
 
+QPoint Tower::getPosition()
+{
+    return m_pos;
+}
+
 void Tower::setTowerLevel(int level)
 {
-    m_towerLevel=level;
+    if(level==1)
+    {
+        m_towerType=1;
+        m_attackRange=70;
+        m_damage=10;
+        m_fireRate=1000;
+    }
+    if(level==2)
+    {
+        //m_sprite=QPixmap(":/image/towerUpgrade1.png");
+        m_towerType=1;
+        m_attackRange=100;
+        m_damage=12;
+        m_fireRate=800;
+    }
 }
 
 int Tower::getTowerLevel()
 {
     return m_towerLevel;
 }
+
 
 void Tower::checkEnemyInRange()
 {
@@ -170,6 +191,11 @@ void TowerSlowingAttack::chooseEnemyForAttack(Enemy *enemy)
 {
     m_chooseEnemy = enemy;
     attackEnemy();
-    enemy->slowDown();
+    //enemy->slowDown();
     m_chooseEnemy->getAttacked(this);
+}
+
+int Tower::getTowerType()
+{
+    return m_towerType;
 }

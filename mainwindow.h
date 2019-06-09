@@ -47,7 +47,9 @@ private slots://QT的private槽 当前类及其子类可以将信号与之相连
 
 private:
 	void loadTowerPositions();
+    void loadTowerPositions2();
 	void addWayPoints();
+    void addWayPoints2();
 	bool loadWave();
 	bool canBuyTower() const;
     bool canUpgradeTower() const;
@@ -55,8 +57,10 @@ private:
 	void drawWave(QPainter *painter);
 	void drawHP(QPainter *painter);
 	void drawPlayerGold(QPainter *painter);
-	void doGameOver();
+    void doGameOver1();
+    void doGameOver2();
 	void preLoadWavesInfo();
+    void preLoadWavesInfo2();
 
 private:
 	Ui::MainWindow *		ui;
@@ -65,7 +69,8 @@ private:
 	int						m_playerHp;
 	int						m_playrGold;
 	bool					m_gameEnded;
-	bool					m_gameWin;
+    bool					m_gameWin_first;
+    bool                    m_gameWin_final;
     bool                    m_stopgame;
 	AudioPlayer *			m_audioPlayer;
     QList<QVariant>			m_wavesInfo;

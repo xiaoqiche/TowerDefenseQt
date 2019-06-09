@@ -20,8 +20,12 @@
         <file>image/froze2.png</file>
         <file>image/froze3.png</file>
         <file>image/green.png</file>
-        <file>image/towerUpgrade1.png</file>
         <file>image/tower2.png</file>
         <file>image/froze01.png</file>
+        <file>image/bulletSlow.png</file>
+        <file>image/towerUpgrade1.png</file>
+        <file>image/enemy 1-1.png</file>
+        <file>config/TowersPosition02.plist</file>
+        <file>config/Waves02.plist</file>
     </qresource>
 </RCC>

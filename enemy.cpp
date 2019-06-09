@@ -39,6 +39,12 @@ Enemy::~Enemy()
     m_game = NULL;//不再指向主窗
 }
 
+void Enemy::setLevel(int level){
+    m_level = level;
+    m_maxHp = 35 + 5*level;//40是这类怪的基础血量
+    m_currentHp = m_maxHp;
+}
+
 void Enemy::doActivate()
 {
 	m_active = true;
@@ -106,8 +112,7 @@ void Enemy::draw(QPainter *painter) const
 	painter->translate(m_pos);
 	painter->rotate(m_rotationSprite);
 	// 绘制敌人
-	painter->drawPixmap(offsetPoint, m_sprite);
-
+    painter->drawPixmap(offsetPoint, m_sprite);
 	painter->restore();
 }
 
@@ -138,7 +143,7 @@ void Enemy::getDamage(int damage)
 
 void Enemy::getAttacked(Tower *attacker)
 {
-	m_attackedTowersList.push_back(attacker);
+    m_attackedTowersList.push_back(attacker);
 }
 
 // 表明敌人已经逃离了攻击范围
@@ -155,7 +160,7 @@ QPoint Enemy::pos() const
 void Enemy::slowDown()
 {
     if(!m_isSlowed){
-        m_walkingSpeed = m_walkingSpeed*0.5;
+        m_walkingSpeed = 1;
     }
 }
 
@@ -167,8 +172,6 @@ Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
 {
     m_speedUp = false;
 }
-
-
 
 Enemy2::~Enemy2()
 {
@@ -183,6 +186,12 @@ void Enemy2::getDamage(int damage){
         m_speedUp = true;
         m_walkingSpeed = 3.0*m_walkingSpeed;
     }
+}
+
+void Enemy2::setLevel(int level){
+    m_level = level;
+    m_maxHp = 15 + 5*level;//20是这类怪的基础血量
+    m_currentHp = m_maxHp;
 }
 
 //Enemy3-----------
@@ -203,11 +212,16 @@ Enemy3::~Enemy3()
 
 void Enemy3::getDamage(int damage){
     if(m_recover == false){
-        m_recover = true;
-        Enemy::getDamage(int(damage/2));
+        m_recover = true;//减免第一次伤害
     }
     else{
         m_recover = false;
-        Enemy::getDamage(damage);
+        Enemy::getDamage(damage/2);//之后伤害减半
     }
+}
+
+void Enemy3::setLevel(int level){
+    m_level = level;
+    m_maxHp = 30 + 10*level;
+    m_currentHp = m_maxHp;
 }

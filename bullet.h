@@ -25,7 +25,7 @@ public:
 	QPoint currentPos() const;
 
 public slots:
-	void hitTarget();
+    virtual void hitTarget();
 
 protected:
 	const QPoint	m_startPos;
@@ -46,8 +46,12 @@ class BulletSlowingAttack:public Bullet
 
 public:
     BulletSlowingAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
-           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/tower2.png"));
+           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/bulletSlow.png"));
     ~BulletSlowingAttack();
+
+public slots:
+    virtual void hitTarget();
+
 };
 
 #endif // BULLET_H

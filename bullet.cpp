@@ -54,6 +54,20 @@ void Bullet::hitTarget()
 	m_game->removedBullet(this);
 }
 
+void BulletSlowingAttack::hitTarget()
+{
+    // 这样处理的原因是:
+    // 可能多个炮弹击中敌人,而其中一个将其消灭,导致敌人delete
+    // 后续炮弹再攻击到的敌人就是无效内存区域
+    // 因此先判断下敌人是否还有效
+    if (m_game->enemyList().indexOf(m_target) != -1)
+    {
+        m_target->slowDown();
+        m_target->getDamage(m_damage);
+    }
+    m_game->removedBullet(this);
+}
+
 void Bullet::setCurrentPos(QPoint pos)
 {
 	m_currentPos = pos;
