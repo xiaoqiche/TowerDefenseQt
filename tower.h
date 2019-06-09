@@ -79,4 +79,18 @@ protected:
 };
 
 
+class TowerStrongAttack:public Tower
+{
+    Q_OBJECT//所有应用QT槽的类都需要声明
+public:
+    TowerStrongAttack(QPoint pos, MainWindow *game, const QPixmap &sprite = QPixmap(":/image/Tower 2-1normal.png"));
+    ~TowerStrongAttack();
+
+public slots:
+    void shootWeapon();
+protected:
+    int         m_towerType=3;
+
+};
+
 #endif // TOWER_H

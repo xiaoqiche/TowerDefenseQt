@@ -16,6 +16,7 @@
 static const int TowerCost = 300;//设定每安置一个炮塔花费300金币
 static const int UpdateTowerCost = 800;//设定升级炮塔花费600金币
 static const int TowerSlowingAttackCost=500;//设定减速炮塔花费500金币
+static const int TowerStrongAttackCost=500;//设定高伤害炮塔花费500金币
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -222,6 +223,33 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         if (canUpgradeTower() && it->containPoint(pressPos) && 2==TowerMode)
         {
 
+            foreach(Tower *attacker, m_towersList)
+            {
+                if(it->centerPos()==attacker->getPosition())
+                {
+                    attacker->setTowerLevel(2);
+                    m_audioPlayer->playSound(TowerPlaceSound);
+                    m_playrGold -= UpdateTowerCost;
+                }
+
+            }
+            update();
+            break;
+        }
+        if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower() && 3==TowerMode)
+        {//为第三种形式时建立第三种塔
+            m_audioPlayer->playSound(TowerPlaceSound);
+            m_playrGold -= TowerStrongAttackCost;
+            it->setHasTower();
+
+            Tower *tower = new TowerStrongAttack(it->centerPos(), this);
+            tower->setTowerLevel(1);
+            m_towersList.push_back(tower);
+            update();
+            break;
+        }
+        if (canUpgradeTower() && it->containPoint(pressPos) && 3==TowerMode)
+        {
 
             foreach(Tower *attacker, m_towersList)
             {
@@ -242,8 +270,19 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 bool MainWindow::canBuyTower() const
 {
-    if (m_playrGold >= TowerCost)
-		return true;
+    if (TowerMode==1)
+            if (m_playrGold >= TowerCost)
+                return true;
+            else
+                return false;
+    else if(TowerMode==2)
+            if (TowerSlowingAttackCost<=m_playrGold)
+                return true;
+            else
+                return false;
+    else if(TowerMode==3)
+            if (TowerStrongAttackCost<=m_playrGold)
+                return true;
 	return false;
 }
 
@@ -535,3 +574,7 @@ void MainWindow::on_ChangeType_2_clicked()
     TowerMode=2;
 }
 
+void MainWindow::on_ChangeType_3_clicked()
+{
+    TowerMode=3;
+}

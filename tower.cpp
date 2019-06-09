@@ -50,6 +50,22 @@ TowerSlowingAttack::~TowerSlowingAttack()
     m_fireRateTimer = NULL;
 }
 
+TowerStrongAttack::TowerStrongAttack(QPoint pos, MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/tower2.png"*/)
+    : Tower(pos,game,sprite)
+{
+    m_towerType=3;
+    m_attackRange=80;
+    m_damage=25;
+    m_fireRate=2000;
+    m_fireRateTimer = new QTimer(this);
+    connect(m_fireRateTimer, SIGNAL(timeout()), this, SLOT(shootWeapon()));
+}
+
+TowerStrongAttack::~TowerStrongAttack()
+{
+    delete m_fireRateTimer;
+    m_fireRateTimer = NULL;
+}
 
 Tower2::Tower2(QPoint pos, MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/tower.png"*/)
     : Tower(pos,game,sprite)
@@ -183,6 +199,13 @@ void Tower::lostSightOfEnemy()
 void TowerSlowingAttack::shootWeapon()
 {
     Bullet *bullet = new BulletSlowingAttack(m_pos, m_chooseEnemy->pos(), m_damage, m_chooseEnemy, m_game);
+    bullet->move();
+    m_game->addBullet(bullet);
+}
+
+void TowerStrongAttack::shootWeapon()
+{
+    Bullet *bullet = new BulletStrongAttack(m_pos, m_chooseEnemy->pos(), m_damage, m_chooseEnemy, m_game);
     bullet->move();
     m_game->addBullet(bullet);
 }

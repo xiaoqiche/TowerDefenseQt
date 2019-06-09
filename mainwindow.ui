@@ -96,10 +96,26 @@
      <string>暂停</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="ChangeType_3">
+    <property name="geometry">
+     <rect>
+      <x>99</x>
+      <y>320</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-image: url(:/image/Tower 2-1normal.png);
+}</string>
+    </property>
+   </widget>
    <zorder>ChangeType_2</zorder>
    <zorder>continue_2</zorder>
    <zorder>ChangeType</zorder>
    <zorder>stop</zorder>
+   <zorder>ChangeType_3</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

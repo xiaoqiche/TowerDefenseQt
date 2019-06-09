@@ -44,6 +44,7 @@ private slots://QT的private槽 当前类及其子类可以将信号与之相连
     void on_continue_2_clicked();
     void on_ChangeType_clicked();
     void on_ChangeType_2_clicked();
+    void on_ChangeType_3_clicked();
 
 private:
 	void loadTowerPositions();

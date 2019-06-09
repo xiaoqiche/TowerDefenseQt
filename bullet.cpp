@@ -25,6 +25,15 @@ BulletSlowingAttack::BulletSlowingAttack(QPoint startPos, QPoint targetPoint, in
 BulletSlowingAttack::~BulletSlowingAttack()
 {}
 
+BulletStrongAttack::BulletStrongAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
+                                     MainWindow *game, const QPixmap &sprite/* = QPixmap(":/image/Bullet 2-1normal.png")*/)
+    : Bullet(startPos,targetPoint,damage,target,game,sprite)
+{}
+
+BulletStrongAttack::~BulletStrongAttack()
+{}
+
+
 void Bullet::draw(QPainter *painter) const
 {
 	painter->drawPixmap(m_currentPos, m_sprite);

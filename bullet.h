@@ -54,4 +54,16 @@ public slots:
 
 };
 
+class BulletStrongAttack:public Bullet
+{
+    Q_OBJECT//所有应用QT槽的类都需要声明
+    Q_PROPERTY(QPoint m_currentPos READ currentPos WRITE setCurrentPos)
+
+public:
+    BulletStrongAttack(QPoint startPos, QPoint targetPoint, int damage, Enemy *target,
+           MainWindow *game, const QPixmap &sprite = QPixmap(":/image/Bullet 2-1normal.png"));
+    ~BulletStrongAttack();
+
+};
+
 #endif // BULLET_H
