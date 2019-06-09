@@ -7,8 +7,4 @@
 *.user
 TowerDefense.pro.user.e23dd7a
 TowerDefense.pro.user
-image/tower2.png
-image/tower2.png
-resource.qrc
-*.png
-image/tower2.png
+/temp/*
