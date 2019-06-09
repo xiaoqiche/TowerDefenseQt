@@ -27,5 +27,10 @@
         <file>image/enemy 1-1.png</file>
         <file>config/TowersPosition02.plist</file>
         <file>config/Waves02.plist</file>
+        <file>image/enemy 3_1.png</file>
+        <file>image/enemy 3_2.png</file>
+        <file>image/enemy 3_3.png</file>
+        <file>image/enemy 3_4.png</file>
+        <file>image/enemy 3_5.png</file>
     </qresource>
 </RCC>
