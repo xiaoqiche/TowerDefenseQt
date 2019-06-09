@@ -32,5 +32,9 @@
         <file>image/enemy 3_3.png</file>
         <file>image/enemy 3_4.png</file>
         <file>image/enemy 3_5.png</file>
+        <file>image/Bullet 2-1normal.png</file>
+        <file>image/Bullet 2-1slowing.png</file>
+        <file>image/Tower 2-1normal.png</file>
+        <file>image/Tower 2-1slowing.png</file>
     </qresource>
 </RCC>
