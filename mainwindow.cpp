@@ -392,7 +392,7 @@ void MainWindow::removedEnemy(Enemy *enemy)
     if (m_enemyList.empty())//没怪了就加一波
 	{
 		++m_waves;
-        if (!loadWave())//所有波用完就结束
+        if (!loadWave())//所有波用完就结束,这里是标志一个关结束的最初位置
 		{
             if(!m_gameWin_first){
                 m_gameWin_first = true;
