@@ -6,12 +6,14 @@
 #include "audioplayer.h"
 #include "plistreader.h"
 #include <QPainter>
+#include <iostream>
 #include <QMouseEvent>
 #include <QtGlobal>
 #include <QMessageBox>
 #include <QTimer>//时间
 #include <QXmlStreamReader>
 #include <QtDebug>
+using namespace std;
 
 static const int TowerCost = 300;//设定每安置一个炮塔花费300金币
 static const int UpdateTowerCost = 800;//设定升级炮塔花费600金币
@@ -224,33 +226,32 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         {
 
             foreach(Tower *attacker, m_towersList)
-            {
-                if(it->centerPos()==attacker->getPosition())
-                {
-                    attacker->setTowerLevel(2);
-                    m_audioPlayer->playSound(TowerPlaceSound);
-                    m_playrGold -= UpdateTowerCost;
-                }
+              {
+                  if(it->centerPos()==attacker->getPosition())
+                  {
+                      attacker->setTowerLevel(2);
+                      m_audioPlayer->playSound(TowerPlaceSound);
+                      m_playrGold -= UpdateTowerCost;
+                  }
 
-            }
-            update();
-            break;
-        }
-        if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower() && 3==TowerMode)
-        {//为第三种形式时建立第三种塔
-            m_audioPlayer->playSound(TowerPlaceSound);
-            m_playrGold -= TowerStrongAttackCost;
-            it->setHasTower();
+              }
+              update();
+              break;
+          }
+          if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower() && 3==TowerMode)
+          {//为第三种形式时建立第三种塔
+              m_audioPlayer->playSound(TowerPlaceSound);
+              m_playrGold -= TowerStrongAttackCost;
+              it->setHasTower();
 
-            Tower *tower = new TowerStrongAttack(it->centerPos(), this);
-            tower->setTowerLevel(1);
-            m_towersList.push_back(tower);
-            update();
-            break;
-        }
-        if (canUpgradeTower() && it->containPoint(pressPos) && 3==TowerMode)
-        {
-
+              Tower *tower = new TowerStrongAttack(it->centerPos(), this);
+              tower->setTowerLevel(1);
+              m_towersList.push_back(tower);
+              update();
+              break;
+          }
+          if (canUpgradeTower() && it->containPoint(pressPos) && 3==TowerMode)
+          {
             foreach(Tower *attacker, m_towersList)
             {
                 if(it->centerPos()==attacker->getPosition())
@@ -271,10 +272,10 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 bool MainWindow::canBuyTower() const
 {
     if (TowerMode==1)
-            if (m_playrGold >= TowerCost)
-                return true;
-            else
-                return false;
+                if (m_playrGold >= TowerCost)
+                    return true;
+                else
+                    return false;
     else if(TowerMode==2)
             if (TowerSlowingAttackCost<=m_playrGold)
                 return true;
@@ -283,7 +284,7 @@ bool MainWindow::canBuyTower() const
     else if(TowerMode==3)
             if (TowerStrongAttackCost<=m_playrGold)
                 return true;
-	return false;
+    return false;
 }
 
 bool MainWindow::canBuySlowingAttackTower()const
@@ -370,40 +371,44 @@ void MainWindow::addWayPoints()
 	WayPoint *wayPoint6 = new WayPoint(QPoint(35, 100));
 	m_wayPointsList.push_back(wayPoint6);
 	wayPoint6->setNextWayPoint(wayPoint5);
+
 }
 
 void MainWindow::addWayPoints2(){
     //m_towerPositionsList.clear();
-    WayPoint *wayPoint1 = new WayPoint(QPoint(0, 100));
+    WayPoint *wayPoint1 = new WayPoint(QPoint(380,280));
     m_wayPointsList.push_back(wayPoint1);
 
-    WayPoint *wayPoint2 = new WayPoint(QPoint(70,100));
+    WayPoint *wayPoint2 = new WayPoint(QPoint(320,280));
     m_wayPointsList.push_back(wayPoint2);
     wayPoint2->setNextWayPoint(wayPoint1);
 
-    WayPoint *wayPoint3 = new WayPoint(QPoint(70,290));
+    WayPoint *wayPoint3 = new WayPoint(QPoint(320,40));
     m_wayPointsList.push_back(wayPoint3);
     wayPoint3->setNextWayPoint(wayPoint2);
 
-    WayPoint *wayPoint4 = new WayPoint(QPoint(180, 290));
+    WayPoint *wayPoint4 = new WayPoint(QPoint(180, 40));
     m_wayPointsList.push_back(wayPoint4);
     wayPoint4->setNextWayPoint(wayPoint3);
 
-    WayPoint *wayPoint5 = new WayPoint(QPoint(180, 40));
+    WayPoint *wayPoint5 = new WayPoint(QPoint(180, 290));
     m_wayPointsList.push_back(wayPoint5);
     wayPoint5->setNextWayPoint(wayPoint4);
 
-    WayPoint *wayPoint6 = new WayPoint(QPoint(320,40));
+    WayPoint *wayPoint6 = new WayPoint(QPoint(70,290));
     m_wayPointsList.push_back(wayPoint6);
     wayPoint6->setNextWayPoint(wayPoint5);
 
-    WayPoint *wayPoint7 = new WayPoint(QPoint(320,280));
-    m_wayPointsList.push_back(wayPoint7);
-    wayPoint6->setNextWayPoint(wayPoint6);
 
-    WayPoint *wayPoint8 = new WayPoint(QPoint(380,280));
+    WayPoint *wayPoint7 = new WayPoint(QPoint(70,100));
+    m_wayPointsList.push_back(wayPoint7);
+    wayPoint7->setNextWayPoint(wayPoint6);
+
+
+    WayPoint *wayPoint8 = new WayPoint(QPoint(0, 100));
     m_wayPointsList.push_back(wayPoint8);
-    wayPoint6->setNextWayPoint(wayPoint7);
+    wayPoint8->setNextWayPoint(wayPoint7);
+
 }
 
 
@@ -437,6 +442,9 @@ void MainWindow::removedEnemy(Enemy *enemy)
                 preLoadWavesInfo2();
                 loadTowerPositions2();
                 addWayPoints2();
+                m_waves=0;
+                loadWave();
+
             }
             else{
                 m_gameWin_final = true;
@@ -516,32 +524,39 @@ bool MainWindow::loadWave()//这个是每波加载怪物的函数
 	if (m_waves >= m_wavesInfo.size())
 		return false;
 
-	WayPoint *startWayPoint = m_wayPointsList.back();
-	QList<QVariant> curWavesInfo = m_wavesInfo[m_waves].toList();
+    else{
+        WayPoint *startWayPoint = m_wayPointsList.back();
+        QList<QVariant> curWavesInfo = m_wavesInfo[m_waves].toList();
 
-	for (int i = 0; i < curWavesInfo.size(); ++i)
-	{
-		QMap<QString, QVariant> dict = curWavesInfo[i].toMap();
-		int spawnTime = dict.value("spawnTime").toInt();
+        for (int i = 0; i < curWavesInfo.size(); ++i)
+        {
+            QMap<QString, QVariant> dict = curWavesInfo[i].toMap();
+            int spawnTime = dict.value("spawnTime").toInt();
 
-        if(i%3 == 1){
-            Enemy *enemy = new Enemy(startWayPoint, this);
-            m_enemyList.push_back(enemy);
-            QTimer::singleShot(spawnTime, enemy, SLOT(doActivate()));
+            if(i%3 == 1){
+                Enemy *enemy = new Enemy(startWayPoint, this);
+                m_enemyList.push_back(enemy);
+                QTimer::singleShot(spawnTime, enemy, SLOT(doActivate()));
+                //cout<<"11111111"<<endl;
+            }
+            else if(i%3 == 2){
+                Enemy *enemy2 = new Enemy2(startWayPoint, this);//另一类怪物也加点进去
+                m_enemyList.push_back(enemy2);
+                QTimer::singleShot(spawnTime, enemy2, SLOT(doActivate()));
+                //cout<<"22222222"<<endl;
+            }else{
+                Enemy *enemy3 = new Enemy3(startWayPoint, this);//另一类怪物也加点进去
+                m_enemyList.push_back(enemy3);
+                QTimer::singleShot(spawnTime, enemy3, SLOT(doActivate()));
+                //cout<<"3333333333"<<endl;
+            }
+            //cout<<"4444444444"<<endl;
         }
-        else if(i%3 == 2){
-            Enemy *enemy2 = new Enemy2(startWayPoint, this);//另一类怪物也加点进去
-            m_enemyList.push_back(enemy2);
-            QTimer::singleShot(spawnTime, enemy2, SLOT(doActivate()));
-        }else{
-            Enemy *enemy3 = new Enemy3(startWayPoint, this);//另一类怪物也加点进去
-            m_enemyList.push_back(enemy3);
-            QTimer::singleShot(spawnTime, enemy3, SLOT(doActivate()));
-        }
+        return true;
 
     }
 
-	return true;
+
 }
 
 QList<Enemy *> MainWindow::enemyList() const//调取怪物表
@@ -573,7 +588,6 @@ void MainWindow::on_ChangeType_2_clicked()
 {
     TowerMode=2;
 }
-
 void MainWindow::on_ChangeType_3_clicked()
 {
     TowerMode=3;
