@@ -17,10 +17,10 @@ class Enemy : public QObject
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
-    Enemy(WayPoint *startWayPoint, MainWindow *game,
+    Enemy(WayPoint *startWayPoint, MainWindow *game,int level = 1,
           const QPixmap &sprite = QPixmap(":/image/enemy.png"),
-          int maxHp = 40,qreal walkingSpeed = 2.0,
-          int level = 1);
+          int maxHp = 40,qreal walkingSpeed = 2.0
+          );
 	~Enemy();
     //设置为虚函数
     virtual void draw(QPainter *painter) const;
@@ -59,10 +59,10 @@ class Enemy2 : public Enemy
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
-    Enemy2(WayPoint *startWayPoint, MainWindow *game,
+    Enemy2(WayPoint *startWayPoint, MainWindow *game,int level = 1,
           const QPixmap &sprite = QPixmap(":/image/enemy_brightYellow.png"),
-          int maxHp = 20,qreal walkingSpeed = 2.0,
-          int level = 1);
+          int maxHp = 20,qreal walkingSpeed = 2.0
+          );
     ~Enemy2();
 
     void getDamage(int damage);//受伤后有加速效果
@@ -77,10 +77,10 @@ class Enemy3 : public Enemy
 {
     Q_OBJECT//所有应用QT槽的类都需要声明
 public:
-    Enemy3(WayPoint *startWayPoint, MainWindow *game,
+    Enemy3(WayPoint *startWayPoint, MainWindow *game,int level = 1,
           const QPixmap &sprite = QPixmap(":/image/enemy 1-1.png"),
-          int maxHp = 40,qreal walkingSpeed = 1.0,
-          int level = 1);
+          int maxHp = 40,qreal walkingSpeed = 1.0
+          );
     ~Enemy3();
 
     void getDamage(int damage);//特殊减伤

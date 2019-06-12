@@ -15,9 +15,9 @@ static const int Health_Bar_Width = 20;
 
 const QSize Enemy::ms_fixedSize(52, 52);
 
-Enemy::Enemy(WayPoint *startWayPoint, MainWindow *game,
+Enemy::Enemy(WayPoint *startWayPoint, MainWindow *game, int level/*=1*/,
              const QPixmap &sprite/* = QPixmap(":/image/enemy.png")*/,
-             int maxHp/* = 40*/, qreal walkingSpeed/* = 1.0*/, int level/*=1*/)
+             int maxHp/* = 40*/, qreal walkingSpeed/* = 1.0*/)
 	: QObject(0)
 	, m_active(false)
     , m_maxHp(maxHp)
@@ -30,6 +30,7 @@ Enemy::Enemy(WayPoint *startWayPoint, MainWindow *game,
 	, m_game(game)
 	, m_sprite(sprite)
 {
+    setLevel(m_level);
 }
 
 Enemy::~Enemy()
@@ -165,10 +166,10 @@ void Enemy::slowDown()
 }
 
 //Enemy2-----------
-Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game,
+Enemy2::Enemy2(WayPoint *startWayPoint, MainWindow *game, int level/*=1*/,
              const QPixmap &sprite,
-             int maxHp, qreal walkingSpeed, int level)
-    :Enemy(startWayPoint,game,sprite,maxHp,walkingSpeed,level)
+             int maxHp, qreal walkingSpeed)
+    :Enemy(startWayPoint,game,level,sprite,maxHp,walkingSpeed)
 {
     m_speedUp = false;
 }
@@ -195,10 +196,10 @@ void Enemy2::setLevel(int level){
 }
 
 //Enemy3-----------
-Enemy3::Enemy3(WayPoint *startWayPoint, MainWindow *game,
+Enemy3::Enemy3(WayPoint *startWayPoint, MainWindow *game, int level/*=1*/,
              const QPixmap &sprite,
-             int maxHp, qreal walkingSpeed, int level)
-    :Enemy(startWayPoint,game,sprite,maxHp,walkingSpeed,level)
+             int maxHp, qreal walkingSpeed)
+    :Enemy(startWayPoint,game,level,sprite,maxHp,walkingSpeed)
 {
     m_recover = false;
 }

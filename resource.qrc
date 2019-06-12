@@ -36,5 +36,6 @@
         <file>image/Tower 2-1slowing.png</file>
         <file>image/Bullet 2-1normal.png</file>
         <file>image/Tower 2-1normal.png</file>
+        <file>image/win.png</file>
     </qresource>
 </RCC>

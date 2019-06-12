@@ -115,6 +115,11 @@ void MainWindow::paintEvent(QPaintEvent *)
 		QPainter painter(this);
 		painter.setPen(QPen(Qt::red));
 		painter.drawText(rect(), Qt::AlignCenter, text);
+        if(m_gameWin_final){
+            QPixmap winPix(":/image/win.png");
+            QPainter painter(this);
+            painter.drawPixmap(0, 0, winPix);
+        }
 		return;
 	}
 
@@ -148,7 +153,7 @@ void MainWindow::paintEvent(QPaintEvent *)
         painter.drawPixmap(0, 0, cachePix2);
     }
     if (!m_gameEnded && !m_gameWin_first){
-        QPixmap cachePix(":/image/Bg.png");
+        QPixmap cachePix(":/image/Bg1plus.png");
         QPainter cachePainter(&cachePix);
         foreach (const TowerPosition &towerPos, m_towerPositionsList)
             towerPos.draw(&cachePainter);
@@ -303,20 +308,20 @@ bool MainWindow::canUpgradeTower() const
 
 void MainWindow::drawWave(QPainter *painter)
 {
-	painter->setPen(QPen(Qt::red));
-	painter->drawText(QRect(400, 5, 100, 25), QString("WAVE : %1").arg(m_waves + 1));
+    painter->setPen(QPen(Qt::blue));
+    painter->drawText(QRect(400, 5, 100, 25), QString("WAVE : %1").arg(m_waves + 1));
 }
 
 void MainWindow::drawHP(QPainter *painter)
 {
-	painter->setPen(QPen(Qt::red));
-	painter->drawText(QRect(30, 5, 100, 25), QString("HP : %1").arg(m_playerHp));
+    painter->setPen(QPen(Qt::blue));
+    painter->drawText(QRect(30, 5, 100, 25), QString("HP : %1").arg(m_playerHp));
 }
 
 void MainWindow::drawPlayerGold(QPainter *painter)
 {
-	painter->setPen(QPen(Qt::red));
-	painter->drawText(QRect(200, 5, 200, 25), QString("GOLD : %1").arg(m_playrGold));
+    painter->setPen(QPen(Qt::blue));
+    painter->drawText(QRect(200, 5, 200, 25), QString("GOLD : %1").arg(m_playrGold));
 }
 
 
@@ -534,26 +539,21 @@ bool MainWindow::loadWave()//这个是每波加载怪物的函数
             int spawnTime = dict.value("spawnTime").toInt();
 
             if(i%3 == 1){
-                Enemy *enemy = new Enemy(startWayPoint, this);
+                Enemy *enemy = new Enemy(startWayPoint, this, m_waves);
                 m_enemyList.push_back(enemy);
                 QTimer::singleShot(spawnTime, enemy, SLOT(doActivate()));
-                //cout<<"11111111"<<endl;
             }
             else if(i%3 == 2){
-                Enemy *enemy2 = new Enemy2(startWayPoint, this);//另一类怪物也加点进去
+                Enemy *enemy2 = new Enemy2(startWayPoint, this, m_waves);//另一类怪物也加点进去
                 m_enemyList.push_back(enemy2);
                 QTimer::singleShot(spawnTime, enemy2, SLOT(doActivate()));
-                //cout<<"22222222"<<endl;
             }else{
-                Enemy *enemy3 = new Enemy3(startWayPoint, this);//另一类怪物也加点进去
+                Enemy *enemy3 = new Enemy3(startWayPoint, this, m_waves);//另一类怪物也加点进去
                 m_enemyList.push_back(enemy3);
                 QTimer::singleShot(spawnTime, enemy3, SLOT(doActivate()));
-                //cout<<"3333333333"<<endl;
             }
-            //cout<<"4444444444"<<endl;
         }
         return true;
-
     }
 
 
